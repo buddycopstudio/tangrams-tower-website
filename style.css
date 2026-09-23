@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Building Tangrams Tower - Production CSS
+   Optimized for GitHub Pages & Cloudflare Pages hosting
+   ========================================================================== */
+
+:root {
+  --bg-color: #0a0b10;
+  --bg-gradient-start: #141622;
+  --text-color: #e2e8f0;
+  --accent-glow: rgba(56, 189, 248, 0.14);
+  --font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --letter-spacing: 0.16em;
+  --image-max-size: 270px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Centering Stage */
+.stage-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100vw;
+  padding: 2rem;
+  position: relative;
+  background: radial-gradient(
+    circle at center,
+    var(--bg-gradient-start) 0%,
+    var(--bg-color) 75%
+  );
+}
+
+/* Content Lockup */
+.content-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2.25rem;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Image Wrapper with Ambient Glow */
+.image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--image-max-size);
+  height: var(--image-max-size);
+}
+
+.center-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  z-index: 2;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.center-image:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: drop-shadow(0 20px 32px var(--accent-glow));
+}
+
+/* Subtle Backlight Glow */
+.ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+/* Caption Text */
+.caption-text {
+  font-size: clamp(1.15rem, 3vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing);
+  color: var(--text-color);
+  opacity: 0.92;
+  text-wrap: balance;
+  transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.caption-text:hover {
+  opacity: 1;
+  letter-spacing: calc(var(--letter-spacing) + 0.04em);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --image-max-size: 216px;
+  }
+  .content-lockup {
+    gap: 1.75rem;
+  }
+}
