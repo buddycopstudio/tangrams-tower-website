@@ -1,0 +1,4 @@
+name = "tangrams-tower"
+
+[assets]
+directory = "."
